@@ -5,7 +5,7 @@ import {
 	signInWithPopup,
 	signOut
 } from "firebase/auth";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -33,23 +33,6 @@ const googleProvider = new GoogleAuthProvider();
 // init services
 const db = getFirestore();
 
-// collection ref
-const colRef = collection(db, "services");
-
-// get collection data
-// getDocs(colRef)
-// 	.then(snapshot => {
-// 		// console.log(snapshot.docs)
-// 		let services = [];
-// 		snapshot.docs.forEach(doc => {
-// 			services.push({ ...doc.data(), id: doc.id });
-// 		});
-// 		console.log(services);
-// 	})
-// 	.catch(err => {
-// 		console.log(err.message);
-// 	});
-
 const signInWithGoogle = () => {
 	signInWithPopup(auth, googleProvider)
 		.then(result => {
@@ -66,51 +49,14 @@ const signInWithGoogle = () => {
 		});
 };
 
-// const signInWithEmailAndPassword = async (email, password) => {
-// 	try {
-// 		await auth.signInWithEmailAndPassword(email, password);
-// 	} catch (err) {
-// 		console.error(err);
-// 		alert(err.message);
-// 	}
-// };
-
-// const registerWithEmailAndPassword = async (name, email, password) => {
-// 	try {
-// 		const res = await auth.createUserWithEmailAndPassword(email, password);
-// 		const user = res.user;
-// 		await db.collection("users").add({
-// 			uid: user.uid,
-// 			name,
-// 			authProvider: "local",
-// 			email
-// 		});
-// 	} catch (err) {
-// 		console.error(err);
-// 		alert(err.message);
-// 	}
-// };
-
-// const sendPasswordResetEmail = async email => {
-// 	try {
-// 		await auth.sendPasswordResetEmail(email);
-// 		alert("Password reset link sent!");
-// 	} catch (err) {
-// 		console.error(err);
-// 		alert(err.message);
-// 	}
-// };
-
 const logout = () => {
 	signOut(auth);
 };
 
-export {
-	auth,
-	db,
-	signInWithGoogle,
-	// signInWithEmailAndPassword,
-	// registerWithEmailAndPassword,
-	// sendPasswordResetEmail,
-	logout
-};
+export { auth, db, signInWithGoogle, logout };
+
+// TODO
+// Firebase basic security
+// Restrict login to my email, al's email & Carr's email
+// Only allow posts from logged in users
+// Only allow delete from logged in users
