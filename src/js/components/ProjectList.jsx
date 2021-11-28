@@ -41,3 +41,16 @@ export default function ProjectList() {
 		</div>
 	);
 }
+
+
+// Upload image
+// Get image url + id
+// projectName
+// initialImage
+// hoverImage
+// projectOrder
+// status: published/unpublished
+
+// delete
+// find images in database + delete
+// delete project + projectSlides

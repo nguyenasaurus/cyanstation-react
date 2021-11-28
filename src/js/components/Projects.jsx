@@ -7,3 +7,13 @@ export default function Projects() {
 		</div>
 	);
 }
+
+// Upload image
+// Get image url + id
+// projectName
+// copy
+// slideNumber
+
+// delete
+// find image in database + delete
+// delete slide
