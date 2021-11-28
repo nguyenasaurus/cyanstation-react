@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 var PrettierPlugin = require("prettier-webpack-plugin");
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer'); // help tailwindcss to work
 
 const port = 3000;
 let publicUrl = `http://localhost:${port}`;
@@ -29,16 +31,17 @@ module.exports = {
           use: ['babel-loader', 'eslint-loader']
         },
         {
-          test: /\.(css|scss)$/, use: [{
-              loader: "style-loader" // creates style nodes from JS strings
-          }, {
-              loader: "css-loader" // translates CSS into CommonJS
-          }, {
-              loader: "sass-loader" // compiles Sass to CSS
-          }, {
-              loader: "postcss-loader"
-          }, {
-              loader: MiniCssExtractPlugin.loader
+          test: /\.(css|scss)$/, 
+
+          include: path.resolve(__dirname, 'src'),
+          use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader', {
+              loader: 'postcss-loader', // postcss loader needed for tailwindcss
+              options: {
+                postcssOptions: {
+                  ident: 'postcss',
+                  plugins: [tailwindcss, autoprefixer],
+                }
+              }
           }]
         }, //css only files
         { 
@@ -51,7 +54,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx', '.scss']
   },
   devtool: "source-map",
   devServer: {
@@ -89,6 +92,6 @@ module.exports = {
       jsxBracketSameLine: true,
       semi: true,                 // Print semicolons at the ends of statements.
       encoding: 'utf-8'           // Which encoding scheme to use on files
-    }),
+    })
   ]
 };
