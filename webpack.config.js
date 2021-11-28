@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var PrettierPlugin = require("prettier-webpack-plugin");
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const port = 3000;
 let publicUrl = `http://localhost:${port}`;
@@ -34,6 +35,10 @@ module.exports = {
               loader: "css-loader" // translates CSS into CommonJS
           }, {
               loader: "sass-loader" // compiles Sass to CSS
+          }, {
+              loader: "postcss-loader"
+          }, {
+              loader: MiniCssExtractPlugin.loader
           }]
         }, //css only files
         { 
@@ -65,6 +70,10 @@ module.exports = {
       // In case you imported plugins individually, you must also require them here:
       Util: "exports-loader?Util!bootstrap/js/dist/util",
       Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "styles.css",
+      chunkFilename: "styles.css"
     }),
     new HtmlWebpackPlugin({
         favicon: '4geeks.ico',
