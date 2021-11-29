@@ -2,8 +2,10 @@ import React from "react";
 
 export default function Projects() {
 	return (
-		<div>
-			<p>Hello</p>
+		<div className="flex justify-center py-16">
+			<div className="w-4/6">
+				<h1>Projects</h1>
+			</div>
 		</div>
 	);
 }

@@ -10,7 +10,7 @@ function Navlink({ link }) {
 	let match = useMatch({ path: resolved.pathname, end: true });
 
 	return (
-		<li className="px-4 sm:px-8 md:px-10 lg:px-14 hover:text-link">
+		<li className="px-2 sm:px-4 md:px-6 lg:px-8 hover:text-link">
 			<NavLink className={match ? "text-link" : ""} to={`/${link}`}>
 				{link.toUpperCase()}
 			</NavLink>
@@ -28,7 +28,7 @@ function Navbar() {
 			<Link to="/">
 				<img src={logomark} />
 			</Link>
-			<ul className="flex justify-center w-full text-2xl font-black">
+			<ul className="flex justify-between w-5/6 mx-auto text-2xl font-black">
 				<Navlink link={"projects"} />
 				<Navlink link={"services"} />
 				<Navlink link={"vision"} />

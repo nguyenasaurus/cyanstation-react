@@ -1,11 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar";
 import Projects from "./Projects";
 import Services from "./Services";
 import Vision from "./Vision";
 import Friends from "./Friends";
 import Login from "./Login";
+import SocialFooter from "./SocialFooter";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -28,6 +29,7 @@ export default function App() {
 				<Route path="/friends" element={<Friends />} />
 				<Route path="/updatesite" element={<Login />} />
 			</Routes>
+			<SocialFooter />
 		</Router>
 	);
 }
