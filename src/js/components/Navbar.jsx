@@ -1,6 +1,5 @@
 import React from "react";
 import { useMatch, useResolvedPath, NavLink, Link } from "react-router-dom";
-import _ from "lodash";
 import PropTypes from "prop-types";
 
 //include images into your bundle
@@ -13,7 +12,7 @@ function Navlink({ link }) {
 	return (
 		<li className="px-4 sm:px-8 md:px-10 lg:px-14 hover:text-link">
 			<NavLink className={match ? "text-link" : ""} to={`/${link}`}>
-				{_.capitalize(link)}
+				{link.toUpperCase()}
 			</NavLink>
 		</li>
 	);
@@ -25,7 +24,7 @@ Navlink.propTypes = {
 
 function Navbar() {
 	return (
-		<nav className="flex items-center px-10 py-4">
+		<nav className="bg-navBg flex items-center px-10 py-4">
 			<Link to="/">
 				<img src={logomark} />
 			</Link>

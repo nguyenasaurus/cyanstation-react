@@ -22,12 +22,11 @@ function Vision() {
 
 	return (
 		<div className="min-h-screen">
-			<h1 className="text-link">Vision</h1>
 			{vision.map(data => (
-				<div className="service" key={data.id}>
-					<p>{data.title}</p>
-					{data.copy}
-					{data.callout}
+				<div className="font-black" key={data.id}>
+					<h1 className="text-highlight text-4xl">{data.title}</h1>
+					<p className="text-lg leading-5">{data.copy}</p>
+					<h2 className="text-highlight text-6xl">{data.callout}</h2>
 				</div>
 			))}
 		</div>

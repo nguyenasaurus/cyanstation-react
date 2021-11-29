@@ -1,18 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
+import {
+	useAccordionButton,
+	Accordion,
+	Card,
+	AccordionContext
+} from "react-bootstrap";
+import arrowDown from "../../img/arrow-down.png";
+
+function ContextAwareToggle({ children, eventKey, callback }) {
+	const { activeEventKey } = useContext(AccordionContext);
+
+	const decoratedOnClick = useAccordionButton(
+		eventKey,
+		() => callback && callback(eventKey)
+	);
+
+	const isCurrentEventKey = activeEventKey === eventKey;
+
+	return (
+		<button
+			type="button"
+			className="flex items-center justify-between w-full bg-transparent border-b-2 border-dashed pb-2"
+			onClick={decoratedOnClick}>
+			<span className="text-2xl font-black">{children}</span>
+			<img
+				src={arrowDown}
+				className={`h-8 w-8 transition-transform transform ${
+					isCurrentEventKey ? "-rotate-180" : ""
+				}`}
+			/>
+		</button>
+	);
+}
+
+ContextAwareToggle.propTypes = {
+	callback: PropTypes.func,
+	children: PropTypes.string,
+	eventKey: PropTypes.string
+};
 
 function Services() {
 	const [services, setServices] = useState([]);
 
+	// Get Services data from db
 	useEffect(() => {
 		const getServices = async () => {
-			// collection ref
 			const queryServices = query(collection(db, "services"));
-
-			// get collection data
 			const servicesData = await getDocs(queryServices);
-
 			setServices(
 				servicesData.docs.map(doc => ({ ...doc.data(), id: doc.id }))
 			);
@@ -20,15 +57,23 @@ function Services() {
 		getServices();
 	}, []);
 
+	// Sort by order
+	services.sort((a, b) => a.order - b.order);
+
 	return (
-		<div>
-			<h1>Services</h1>
-			{services.map(data => (
-				<div className="service" key={data.id}>
-					<p>{data.serviceName}</p>
-					{data.serviceDescription}
-				</div>
-			))}
+		<div className="flex justify-center py-16">
+			<Accordion className="w-4/6">
+				{services.map(data => (
+					<article className="mb-6" key={data.id}>
+						<ContextAwareToggle eventKey={data.id}>
+							{data.serviceName}
+						</ContextAwareToggle>
+						<Accordion.Collapse eventKey={data.id}>
+							<Card.Body>{data.serviceDescription}</Card.Body>
+						</Accordion.Collapse>
+					</article>
+				))}
+			</Accordion>
 		</div>
 	);
 }
