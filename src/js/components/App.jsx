@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar";
-import Projects from "./Projects";
+import { Projects, Project } from "./Projects";
 import Services from "./Services";
 import Vision from "./Vision";
 import Friends from "./Friends";
-import Login from "./Login";
+import Dashboard from "./Dashboard";
 import SocialFooter from "./SocialFooter";
 
 // This site has 3 pages, all of which are rendered
@@ -23,11 +23,13 @@ export default function App() {
 			<Navbar />
 			<Routes>
 				<Route exact path="/" element={<Home />} />
-				<Route path="/projects" element={<Projects />} />
+				<Route path="/projects" element={<Projects />}>
+					<Route path=":projectId" element={<Project />} />
+				</Route>
 				<Route path="/services" element={<Services />} />
 				<Route path="/vision" element={<Vision />} />
 				<Route path="/friends" element={<Friends />} />
-				<Route path="/updatesite" element={<Login />} />
+				<Route path="/updatesite" element={<Dashboard />} />
 			</Routes>
 			<SocialFooter />
 		</Router>
