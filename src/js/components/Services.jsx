@@ -8,7 +8,6 @@ import {
 	Card,
 	AccordionContext
 } from "react-bootstrap";
-import arrowDown from "../../img/arrow-down.png";
 
 function ContextAwareToggle({ children, eventKey, callback }) {
 	const { activeEventKey } = useContext(AccordionContext);
@@ -19,6 +18,9 @@ function ContextAwareToggle({ children, eventKey, callback }) {
 	);
 
 	const isCurrentEventKey = activeEventKey === eventKey;
+
+	const arrowDown =
+		"https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Farrow-down.png?alt=media&token=aae45e0a-0874-4251-a0fe-ae5c72a6a837";
 
 	return (
 		<button

@@ -2,9 +2,6 @@ import React from "react";
 import { useMatch, useResolvedPath, NavLink, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-//include images into your bundle
-import logomark from "../../img/logo-mark.png";
-
 function Navlink({ link }) {
 	let resolved = useResolvedPath(link);
 	let match = useMatch({ path: resolved.pathname, end: true });
@@ -23,6 +20,9 @@ Navlink.propTypes = {
 };
 
 function Navbar() {
+	const logomark =
+		"https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Flogo-mark.png?alt=media&token=d0decc3b-5afc-42fb-856b-636306b51afd";
+
 	return (
 		<nav className="bg-navBg flex items-center px-10 py-4">
 			<Link to="/">
