@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
-// Core modules imports are same as usual
-import { Navigation, Pagination } from "swiper";
-// Direct React component imports
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import ViewProject from "./ViewProject";
 
 let publishedProjects;
 
@@ -71,49 +67,5 @@ function Projects() {
 		</>
 	);
 }
-
-function findProject(projectId) {
-	return publishedProjects.find(({ id }) => id === projectId);
-}
-
-function getProjectSlides() {}
-
-// Upload image
-// Get image url + id
-// projectName
-// copy
-// slideNumber
-
-// delete
-// find image in database + delete
-// delete slide
-
-function ViewProject({ projectId, onClose }) {
-	console.log(findProject(projectId));
-	// get collection 'slides' from projectId
-
-	return (
-		<div className="bg-white min-h-full w-full absolute top-0 z-20">
-			{/* logo */}
-			<Swiper
-				spaceBetween={0}
-				slidesPerView={1}
-				navigation={{
-					disabledClass: "hidden"
-				}}>
-				<SwiperSlide>Slide 1</SwiperSlide>
-				<SwiperSlide>Slide 2</SwiperSlide>
-				<SwiperSlide>Slide 3</SwiperSlide>
-				<SwiperSlide>Slide 4</SwiperSlide>
-			</Swiper>
-			<button onClick={() => onClose()}>Back to all projects</button>
-		</div>
-	);
-}
-
-ViewProject.propTypes = {
-	projectId: PropTypes.string,
-	onClose: PropTypes.func
-};
 
 export default Projects;
