@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import PropTypes from "prop-types";
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
+// Core modules imports are same as usual
+import { Navigation, Pagination } from "swiper";
+// Direct React component imports
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+
+let publishedProjects;
 
 function Projects() {
+	// const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+	const [isViewModalOpen, setIsViewModalOpen] = useState(false);
 	const [projects, setProjects] = useState([]);
+	const [currentProjectId, setCurrentProjectId] = useState(null);
 
 	// Get Services data from db
 	useEffect(() => {
@@ -19,23 +28,25 @@ function Projects() {
 	}, []);
 
 	// Get published projects
-	let publishedProjects = projects.filter(
-		x => x.projectStatus === "published"
-	);
-	// Sort by order
+	publishedProjects = projects.filter(x => x.projectStatus === "published");
+	// Sort by projects order
 	publishedProjects = publishedProjects.sort(
 		(a, b) => a.projectOrder - b.projectOrder
 	);
 
-	console.log(publishedProjects);
-
 	return (
-		<div id="projects" className="flex justify-center py-16">
-			<div className="w-4/6">
-				<main className="flex flex-wrap">
-					{publishedProjects.map(data => (
-						<Link key={data.id} to={data.projectName}>
-							<figure className="relative px-4 py-4">
+		<>
+			<div id="projects" className="flex justify-center py-16">
+				<div className="w-4/6">
+					<main className="flex flex-wrap">
+						{publishedProjects.map(data => (
+							<figure
+								onClick={() => {
+									setCurrentProjectId(data.id);
+									setIsViewModalOpen(true);
+								}}
+								key={data.id}
+								className="relative px-4 py-4 cursor-pointer">
 								<div className="bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 pt-6 ease-in-out duration-500">
 									<img src={data.mainThumbnail} alt="" />
 								</div>
@@ -44,14 +55,28 @@ function Projects() {
 									<img src={data.hoverThumbnail} alt="" />
 								</div>
 							</figure>
-						</Link>
-					))}
-				</main>
-				<Outlet />
+						))}
+					</main>
+				</div>
 			</div>
-		</div>
+			{isViewModalOpen ? (
+				<ViewProject
+					projectId={currentProjectId}
+					onClose={() => {
+						setIsViewModalOpen(false);
+					}}
+				/>
+			) : null}
+			;
+		</>
 	);
 }
+
+function findProject(projectId) {
+	return publishedProjects.find(({ id }) => id === projectId);
+}
+
+function getProjectSlides() {}
 
 // Upload image
 // Get image url + id
@@ -63,8 +88,32 @@ function Projects() {
 // find image in database + delete
 // delete slide
 
-function Project() {
-	return <h1>just testing</h1>;
+function ViewProject({ projectId, onClose }) {
+	console.log(findProject(projectId));
+	// get collection 'slides' from projectId
+
+	return (
+		<div className="bg-white min-h-full w-full absolute top-0 z-20">
+			{/* logo */}
+			<Swiper
+				spaceBetween={0}
+				slidesPerView={1}
+				navigation={{
+					disabledClass: "hidden"
+				}}>
+				<SwiperSlide>Slide 1</SwiperSlide>
+				<SwiperSlide>Slide 2</SwiperSlide>
+				<SwiperSlide>Slide 3</SwiperSlide>
+				<SwiperSlide>Slide 4</SwiperSlide>
+			</Swiper>
+			<button onClick={() => onClose()}>Back to all projects</button>
+		</div>
+	);
 }
 
-export { Projects, Project };
+ViewProject.propTypes = {
+	projectId: PropTypes.string,
+	onClose: PropTypes.func
+};
+
+export default Projects;
