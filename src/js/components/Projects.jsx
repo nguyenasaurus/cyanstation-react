@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { collection, query, getDocs } from "firebase/firestore";
+import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import ViewProject from "./ViewProject";
-
-let publishedProjects;
 
 function Projects() {
 	// const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -14,7 +12,12 @@ function Projects() {
 	// Get Services data from db
 	useEffect(() => {
 		const getProjects = async () => {
-			const queryProjects = query(collection(db, "projects"));
+			const projectsRef = collection(db, "projects");
+			const queryProjects = query(
+				projectsRef,
+				where("projectStatus", "==", "published"),
+				orderBy("projectOrder", "asc")
+			);
 			const projectsData = await getDocs(queryProjects);
 			setProjects(
 				projectsData.docs.map(doc => ({ ...doc.data(), id: doc.id }))
@@ -23,19 +26,12 @@ function Projects() {
 		getProjects();
 	}, []);
 
-	// Get published projects
-	publishedProjects = projects.filter(x => x.projectStatus === "published");
-	// Sort by projects order
-	publishedProjects = publishedProjects.sort(
-		(a, b) => a.projectOrder - b.projectOrder
-	);
-
 	return (
 		<>
 			<div id="projects" className="flex justify-center py-16">
 				<div className="w-4/6">
 					<main className="flex flex-wrap">
-						{publishedProjects.map(data => (
+						{projects.map(data => (
 							<figure
 								onClick={() => {
 									setCurrentProjectId(data.id);
