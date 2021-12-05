@@ -1,39 +1,27 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { collection, where, query, getDocs } from "firebase/firestore";
+import { collection, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
 // Direct React component imports
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 
 function ViewProject({ projectId, onClose }) {
-	// const [currentProjectSlides, setProjectSlides] = useState([]);
-
-	// Get Services data from db
-	// useEffect(() => {
-	// 	const getProjectSlides = async () => {
-	// 		const projectRef = doc(db, "projects", `"${projectId}`);
-	// 		const queryProjectId = query(projectRef);
-	// 		const projectSlideData = await getDocs(queryProjectId);
-
-	// 		console.log(projectSlideData);
-	// 		setProjectSlides(
-	// 			projectSlideData.docs.map(doc => ({
-	// 				...doc.data(),
-	// 				id: doc.id
-	// 			}))
-	// 		);
-	// 	};
-	// 	getProjectSlides();
-	// }, []);
-
-	// db.collection('users').doc(id).get()
-	// .then(snapshot => setUserDetails(snapshot.data()))
-	// .where('capital', '==', true).get();
-
-	// console.log(currentProjectSlides);
-	// console.log(currentProjectSlides);
-	// , where('type', '==', 'museum')
+	const [slides, setSlides] = useState([]);
+	useEffect(() => {
+		const getSlides = async () => {
+			const slidesRef = collection(db, "projects", projectId, "slides");
+			const slidesData = await getDocs(
+				slidesRef,
+				where("slideStatus", "==", "published"),
+				orderBy("slideOrder", "asc")
+			);
+			setSlides(
+				slidesData.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+			);
+		};
+		getSlides();
+	}, []);
 
 	return (
 		<div className="bg-white min-h-full w-full absolute top-0 z-20">
