@@ -6,7 +6,7 @@ import { db } from "../utils/firebase";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 
-function ViewProject({ projectId, onClose }) {
+function ViewProject({ projectId, projectName, onClose }) {
 	const [slides, setSlides] = useState([]);
 	useEffect(() => {
 		const getSlides = async () => {
@@ -33,32 +33,19 @@ function ViewProject({ projectId, onClose }) {
 				navigation={{
 					disabledClass: "hidden"
 				}}>
-				<SwiperSlide>
-					<div className="flex items-center mx-8">
-						<img
-							src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/projects%2Fbranch-house%2Fslides%2Fslide-1.png?alt=media&token=bfae8907-d7e2-4119-be35-5206d2a540ea"
-							alt=""
-						/>
-						<div className="flex flex-col ">
-							<h2 className="text-4xl">Branch House</h2>
-							<p className="ml-4 text-2xl">
-								Lorem ipsum dolor sit amet, consectetur
-								adipiscing elit, sed do eiusmod tempor
-								incididunt ut labore et dolore magna aliqua. Ut
-								enim ad minim veniam, quis nostrud exercitation
-								ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in
-								reprehenderit in voluptate velit esse cillum
-								dolore eu fugiat nulla pariatur. Excepteur sint
-								occaecat cupidatat non proident, sunt in culpa
-								qui officia deserunt mollit anim id est laborum
-							</p>
+				{slides.map(data => (
+					<SwiperSlide key={data.id}>
+						<div className="flex items-center mx-8">
+							<img src={data.slideImage} alt="" />
+							<div className="flex flex-col ">
+								<h2 className="text-4xl">{projectName}</h2>
+								<p className="ml-4 text-2xl">
+									{data.slideCopy}
+								</p>
+							</div>
 						</div>
-					</div>
-				</SwiperSlide>
-				<SwiperSlide>Slide 2</SwiperSlide>
-				<SwiperSlide>Slide 3</SwiperSlide>
-				<SwiperSlide>Slide 4</SwiperSlide>
+					</SwiperSlide>
+				))}
 			</Swiper>
 			<button onClick={() => onClose()}>Back to all projects</button>
 		</div>
@@ -67,6 +54,7 @@ function ViewProject({ projectId, onClose }) {
 
 ViewProject.propTypes = {
 	projectId: PropTypes.string,
+	projectName: PropTypes.string,
 	onClose: PropTypes.func
 };
 
