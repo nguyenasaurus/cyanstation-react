@@ -8,6 +8,7 @@ function Projects() {
 	const [isViewModalOpen, setIsViewModalOpen] = useState(false);
 	const [projects, setProjects] = useState([]);
 	const [currentProjectId, setCurrentProjectId] = useState(null);
+	const [currentProjectName, setCurrentProjectName] = useState(null);
 
 	// Get Services data from db
 	useEffect(() => {
@@ -35,6 +36,7 @@ function Projects() {
 							<figure
 								onClick={() => {
 									setCurrentProjectId(data.id);
+									setCurrentProjectName(data.projectName);
 									setIsViewModalOpen(true);
 								}}
 								key={data.id}
@@ -54,6 +56,7 @@ function Projects() {
 			{isViewModalOpen ? (
 				<ViewProject
 					projectId={currentProjectId}
+					projectName={currentProjectName}
 					onClose={() => {
 						setIsViewModalOpen(false);
 					}}
