@@ -2,17 +2,16 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var PrettierPlugin = require("prettier-webpack-plugin");
+const ESLintPlugin = require('eslint-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const tailwindcss = require('tailwindcss');
-const autoprefixer = require('autoprefixer'); // help tailwindcss to work
 
 const port = 3000;
-let publicUrl = `http://localhost:${port}`;
+let publicUrl = `ws://localhost:${port}/ws`;
 if(process.env.GITPOD_WORKSPACE_URL){
   const [schema, host] = process.env.GITPOD_WORKSPACE_URL.split('://');
-  publicUrl = `${port}-${host}`;
+  publicUrl = `wss://${port}-${host}/ws`;
 }
+console.log("publicUrl", publicUrl)
 
 module.exports = {
   entry: [
@@ -28,20 +27,13 @@ module.exports = {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: ['babel-loader', 'eslint-loader']
+          use: ['babel-loader']
         },
         {
-          test: /\.(css|scss)$/, 
-
-          include: path.resolve(__dirname, 'src'),
-          use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader', {
-              loader: 'postcss-loader', // postcss loader needed for tailwindcss
-              options: {
-                postcssOptions: {
-                  ident: 'postcss',
-                  plugins: [tailwindcss, autoprefixer],
-                }
-              }
+          test: /\.(css)$/, use: [{
+              loader: "style-loader" // creates style nodes from JS strings
+          }, {
+              loader: "css-loader" // translates CSS into CommonJS
           }]
         }, //css only files
         { 
@@ -54,30 +46,26 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.scss']
+    extensions: ['*', '.js']
   },
   devtool: "source-map",
   devServer: {
-    contentBase:  './dist',
+    port,
     hot: true,
-    disableHostCheck: true,
+    allowedHosts: "all",
     historyApiFallback: true,
-    public: publicUrl
+    static: {
+      directory: path.resolve(__dirname, "dist"),
+    },
+    client: {
+      webSocketURL: publicUrl
+    },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      Popper: 'popper.js',
-      jQuery: 'jquery',
-      // In case you imported plugins individually, you must also require them here:
-      Util: "exports-loader?Util!bootstrap/js/dist/util",
-      Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown"
-    }),
-    new MiniCssExtractPlugin({
-      filename: "styles.css",
-      chunkFilename: "styles.css"
-    }),
+    // new ESLintPlugin({
+    //   files: path.resolve(__dirname, "src"),
+    // }),
     new HtmlWebpackPlugin({
         favicon: '4geeks.ico',
         template: 'template.html'
@@ -92,6 +80,6 @@ module.exports = {
       jsxBracketSameLine: true,
       semi: true,                 // Print semicolons at the ends of statements.
       encoding: 'utf-8'           // Which encoding scheme to use on files
-    })
+    }),
   ]
 };
