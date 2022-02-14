@@ -14,7 +14,7 @@ function Vision() {
 			const visionData = await getDocs(queryVision);
 
 			setVision(
-				visionData.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+				visionData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 			);
 		};
 		getVision();
@@ -22,7 +22,7 @@ function Vision() {
 
 	return (
 		<div className="flex justify-center py-16">
-			{vision.map(data => (
+			{vision.map((data) => (
 				<div className="w-4/6 font-black" key={data.id}>
 					<h1 className="text-highlight text-4xl">{data.title}</h1>
 					<p className="text-lg leading-5">{data.copy}</p>

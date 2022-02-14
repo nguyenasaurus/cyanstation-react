@@ -16,7 +16,7 @@ function Navlink({ link }) {
 }
 
 Navlink.propTypes = {
-	link: PropTypes.string.isRequired
+	link: PropTypes.string.isRequired,
 };
 
 function Navbar() {

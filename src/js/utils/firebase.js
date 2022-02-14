@@ -3,7 +3,7 @@ import {
 	GoogleAuthProvider,
 	getAuth,
 	signInWithPopup,
-	signOut
+	signOut,
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
@@ -20,7 +20,7 @@ const firebaseConfig = {
 	storageBucket: "cyanstationv1.appspot.com",
 	messagingSenderId: "393219203234",
 	appId: "1:393219203234:web:b6d04c0c4950b4248cb7fb",
-	measurementId: "G-F9ZJQQGM8E"
+	measurementId: "G-F9ZJQQGM8E",
 };
 
 // init firebase app
@@ -35,7 +35,7 @@ const db = getFirestore();
 
 const signInWithGoogle = () => {
 	signInWithPopup(auth, googleProvider)
-		.then(result => {
+		.then((result) => {
 			const name = result.user.displayName;
 			const email = result.user.email;
 			const profilePic = result.user.photoURL;
@@ -44,7 +44,7 @@ const signInWithGoogle = () => {
 			localStorage.setItem("email", email);
 			localStorage.setItem("profilePic", profilePic);
 		})
-		.catch(error => {
+		.catch((error) => {
 			console.log(error);
 		});
 };

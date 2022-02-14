@@ -5,7 +5,7 @@ module.exports = {
 	purge: [
 		"./src/**/*.{js,jsx,ts,tsx}",
 		"./public/index.html",
-		"./src/**/*.scss"
+		"./src/**/*.scss",
 	],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
@@ -14,16 +14,16 @@ module.exports = {
 			current: "currentColor",
 			link: "#1C3CB5",
 			highlight: "#40899C",
-			navBg: "#ECDFE3"
+			navBg: "#ECDFE3",
 			// link: {
 			// 	DEFAULT: "#1C3CB5"
 			// }
 		},
-		backgroundColor: theme => theme("colors"),
-		textColor: theme => theme("colors")
+		backgroundColor: (theme) => theme("colors"),
+		textColor: (theme) => theme("colors"),
 	},
 	variants: {
-		extend: {}
+		extend: {},
 	},
-	plugins: []
+	plugins: [],
 };

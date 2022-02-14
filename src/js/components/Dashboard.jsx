@@ -7,7 +7,7 @@ function Dashboard() {
 	const [userLoggedIn, setuserLoggedIn] = useState([]);
 
 	useEffect(() => {
-		onAuthStateChanged(auth, user => {
+		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setuserLoggedIn(true);
 			} else {

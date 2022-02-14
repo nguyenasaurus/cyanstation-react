@@ -4,6 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 var PrettierPlugin = require("prettier-webpack-plugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer'); // help tailwindcss to work
 
 const port = 3000;
 let publicUrl = `ws://localhost:${port}/ws`;
@@ -30,10 +33,16 @@ module.exports = {
           use: ['babel-loader']
         },
         {
-          test: /\.(css)$/, use: [{
-              loader: "style-loader" // creates style nodes from JS strings
-          }, {
-              loader: "css-loader" // translates CSS into CommonJS
+          test: /\.s[ac]ss$/i, use: ['style-loader', {loader: MiniCssExtractPlugin.loader,options: {
+            esModule: false,
+          }}, 'css-loader', 'sass-loader', {
+              loader: 'postcss-loader', // postcss loader needed for tailwindcss
+              options: {
+                postcssOptions: {
+                  ident: 'postcss',
+                  plugins: [tailwindcss, autoprefixer],
+                }
+              }
           }]
         }, //css only files
         { 
@@ -46,7 +55,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js']
+    extensions: ['*', '.js', '.jsx', '.scss']
   },
   devtool: "source-map",
   devServer: {
@@ -66,6 +75,18 @@ module.exports = {
     // new ESLintPlugin({
     //   files: path.resolve(__dirname, "src"),
     // }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      Popper: 'popper.js',
+      jQuery: 'jquery',
+      // In case you imported plugins individually, you must also require them here:
+      Util: "exports-loader?Util!bootstrap/js/dist/util",
+      Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "styles.css",
+      chunkFilename: "styles.css"
+    }),
     new HtmlWebpackPlugin({
         favicon: '4geeks.ico',
         template: 'template.html'
@@ -76,7 +97,7 @@ module.exports = {
       tabWidth: 4,                // Specify the number of spaces per indentation-level.
       useTabs: true,              // Indent lines with tabs instead of spaces.
       bracketSpacing: true,
-      extensions: [ ".js", ".jsx" ],
+      extensions: [ ".js", ".jsx"],
       jsxBracketSameLine: true,
       semi: true,                 // Print semicolons at the ends of statements.
       encoding: 'utf-8'           // Which encoding scheme to use on files

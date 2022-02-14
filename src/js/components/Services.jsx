@@ -6,7 +6,7 @@ import {
 	useAccordionButton,
 	Accordion,
 	Card,
-	AccordionContext
+	AccordionContext,
 } from "react-bootstrap";
 
 function ContextAwareToggle({ children, eventKey, callback }) {
@@ -41,7 +41,7 @@ function ContextAwareToggle({ children, eventKey, callback }) {
 ContextAwareToggle.propTypes = {
 	callback: PropTypes.func,
 	children: PropTypes.string,
-	eventKey: PropTypes.string
+	eventKey: PropTypes.string,
 };
 
 function Services() {
@@ -53,7 +53,7 @@ function Services() {
 			const queryServices = query(collection(db, "services"));
 			const servicesData = await getDocs(queryServices);
 			setServices(
-				servicesData.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+				servicesData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 			);
 		};
 		getServices();
@@ -65,7 +65,7 @@ function Services() {
 	return (
 		<div className="flex justify-center py-16">
 			<Accordion className="w-4/6">
-				{services.map(data => (
+				{services.map((data) => (
 					<article className="mb-6" key={data.id}>
 						<ContextAwareToggle eventKey={data.id}>
 							{data.serviceName}

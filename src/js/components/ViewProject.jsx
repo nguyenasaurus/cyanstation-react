@@ -4,7 +4,7 @@ import { collection, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
 // Direct React component imports
 import { Navigation, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+// import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 
 function ViewProject({ projectId, projectName, onClose }) {
 	const [slides, setSlides] = useState([]);
@@ -17,7 +17,7 @@ function ViewProject({ projectId, projectName, onClose }) {
 				orderBy("slideOrder", "asc")
 			);
 			setSlides(
-				slidesData.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+				slidesData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 			);
 		};
 		getSlides();
@@ -26,14 +26,14 @@ function ViewProject({ projectId, projectName, onClose }) {
 	return (
 		<div className="bg-white min-h-full w-full absolute top-0 z-20">
 			{/* logo */}
-			<Swiper
+			{/* <Swiper
 				modules={[Navigation]}
 				spaceBetween={0}
 				slidesPerView={1}
 				navigation={{
-					disabledClass: "hidden"
+					disabledClass: "hidden",
 				}}>
-				{slides.map(data => (
+				{slides.map((data) => (
 					<SwiperSlide key={data.id}>
 						<div className="flex items-center mx-8">
 							<img src={data.slideImage} alt="" />
@@ -46,7 +46,7 @@ function ViewProject({ projectId, projectName, onClose }) {
 						</div>
 					</SwiperSlide>
 				))}
-			</Swiper>
+			</Swiper> */}
 			<button onClick={() => onClose()}>Back to all projects</button>
 		</div>
 	);
@@ -55,7 +55,7 @@ function ViewProject({ projectId, projectName, onClose }) {
 ViewProject.propTypes = {
 	projectId: PropTypes.string,
 	projectName: PropTypes.string,
-	onClose: PropTypes.func
+	onClose: PropTypes.func,
 };
 
 export default ViewProject;

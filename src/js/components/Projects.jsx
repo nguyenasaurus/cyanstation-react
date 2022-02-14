@@ -21,7 +21,7 @@ function Projects() {
 			);
 			const projectsData = await getDocs(queryProjects);
 			setProjects(
-				projectsData.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+				projectsData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 			);
 		};
 		getProjects();
@@ -32,7 +32,7 @@ function Projects() {
 			<div id="projects" className="flex justify-center py-16">
 				<div className="w-4/6">
 					<main className="flex flex-wrap">
-						{projects.map(data => (
+						{projects.map((data) => (
 							<figure
 								onClick={() => {
 									setCurrentProjectId(data.id);
