@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { collection, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
 // Direct React component imports
-import { Navigation, Pagination } from "swiper";
-// import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 function ViewProject({ projectId, projectName, onClose }) {
 	const [slides, setSlides] = useState([]);
@@ -26,7 +25,7 @@ function ViewProject({ projectId, projectName, onClose }) {
 	return (
 		<div className="bg-white min-h-full w-full absolute top-0 z-20">
 			{/* logo */}
-			{/* <Swiper
+			<Swiper
 				modules={[Navigation]}
 				spaceBetween={0}
 				slidesPerView={1}
@@ -46,7 +45,7 @@ function ViewProject({ projectId, projectName, onClose }) {
 						</div>
 					</SwiperSlide>
 				))}
-			</Swiper> */}
+			</Swiper>
 			<button onClick={() => onClose()}>Back to all projects</button>
 		</div>
 	);
