@@ -30,8 +30,8 @@ function Projects() {
 	return (
 		<>
 			<div id="projects" className="flex justify-center py-16">
-				<div className="w-4/6">
-					<main className="flex flex-wrap">
+				<div className="w-5/6">
+					<main className="flex flex-wrap justify-around">
 						{projects.map((data) => (
 							<figure
 								onClick={() => {

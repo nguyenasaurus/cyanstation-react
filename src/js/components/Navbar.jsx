@@ -22,17 +22,22 @@ Navlink.propTypes = {
 
 function Navbar() {
 	return (
-		<nav className="bg-navBg flex items-center px-10 py-4">
-			<Link to="/">
-				<img src={logomark} />
-			</Link>
-			<ul className="flex justify-between w-5/6 mx-auto text-2xl font-black">
-				<Navlink link={"projects"} />
-				<Navlink link={"services"} />
-				<Navlink link={"vision"} />
-				<Navlink link={"friends"} />
-			</ul>
-		</nav>
+		<>
+			<div class="w-full">
+				<img src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fheader%20text.png?alt=media&token=96f7be8e-fc2c-4c0c-a352-dcc139775f10" />
+			</div>
+			<nav className="bg-navBg flex items-center px-10 py-4">
+				<Link to="/projects">
+					<img src={logomark} />
+				</Link>
+				<ul className="flex justify-between w-5/6 mx-auto text-2xl font-black">
+					<Navlink link={"projects"} />
+					<Navlink link={"services"} />
+					<Navlink link={"vision"} />
+					<Navlink link={"friends"} />
+				</ul>
+			</nav>
+		</>
 	);
 }
 
