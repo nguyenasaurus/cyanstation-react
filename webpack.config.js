@@ -23,7 +23,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public'),
-    publicPath: '/'
+    publicPath: ''
   },
   module: {
     rules: [
@@ -72,9 +72,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    // new ESLintPlugin({
-    //   files: path.resolve(__dirname, "src"),
-    // }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       Popper: 'popper.js',
