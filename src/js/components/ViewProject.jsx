@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { collection, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
 // Direct React component imports
+import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import logomark from "../constants/logomark";
 
 function ViewProject({ projectId, projectName, onClose }) {
 	const [slides, setSlides] = useState([]);
@@ -24,8 +27,11 @@ function ViewProject({ projectId, projectName, onClose }) {
 
 	return (
 		<div className="bg-white min-h-full w-full absolute top-0 z-20">
-			{/* logo */}
+			<button onClick={() => onClose()}>
+				<img src={logomark} />
+			</button>
 			<Swiper
+				className="project-slides"
 				modules={[Navigation]}
 				spaceBetween={0}
 				slidesPerView={1}
@@ -34,19 +40,30 @@ function ViewProject({ projectId, projectName, onClose }) {
 				}}>
 				{slides.map((data) => (
 					<SwiperSlide key={data.id}>
-						<div className="flex items-center mx-8">
+						<div className="flex items-center mx-8 relative flex-col sm:flex-row">
 							<img src={data.slideImage} alt="" />
-							<div className="flex flex-col ">
-								<h2 className="text-4xl">{projectName}</h2>
-								<p className="ml-4 text-2xl">
-									{data.slideCopy}
+							<div className="mt-4 my-4 sm:m-0 sm:absolute sm:h-full sm:w-6/12 sm:right-8">
+								<h2 className="text-4xl mb-2 bg-white py-2">
+									{projectName}
+								</h2>
+								<p className="sm:h-5/6 sm:flex sm:flex-col sm:justify-center">
+									<span className="bg-white py-2 px-4 lg:mr-6">
+										{data.slideCopy}
+									</span>
 								</p>
 							</div>
 						</div>
 					</SwiperSlide>
 				))}
 			</Swiper>
-			<button onClick={() => onClose()}>Back to all projects</button>
+
+			<div className="flex justify-end mr-4">
+				<button
+					className="border-2 py-2  px-4"
+					onClick={() => onClose()}>
+					Back to all projects
+				</button>
+			</div>
 		</div>
 	);
 }

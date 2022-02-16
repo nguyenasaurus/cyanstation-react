@@ -23,3 +23,22 @@ body {
 nav a, h1, h2, h3, h4, h5, h6 {
     font-family: "Futura PT Extra Black";
 }
+
+.swiper-button-next, .swiper-button-prev {
+  height: 47px;
+  width: 47px;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+	content: '';
+	background-image: url("https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Farrow-right.png?alt=media&token=fe273677-a008-4c58-a32c-3df5b72f7383");
+	background-repeat: no-repeat;
+	background-position: center center;
+  height: 47px;
+  width: 47px;
+}
+
+.swiper-button-prev:after {
+	transform: scaleX(-1);
+}
