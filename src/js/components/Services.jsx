@@ -9,6 +9,7 @@ import {
 	AccordionContext,
 } from "react-bootstrap";
 
+import parse from "html-react-parser";
 function ContextAwareToggle({ children, eventKey, callback }) {
 	const { activeEventKey } = useContext(AccordionContext);
 
@@ -27,7 +28,7 @@ function ContextAwareToggle({ children, eventKey, callback }) {
 			type="button"
 			className="flex items-center justify-between w-full bg-transparent border-b-2 border-dashed pb-2"
 			onClick={decoratedOnClick}>
-			<span className="text-2xl font-black">{children}</span>
+			<span className="text-2xl">{parse(children)}</span>
 			<img
 				src={arrowDown}
 				className={`h-8 w-8 transition-transform transform ${
@@ -71,7 +72,9 @@ function Services() {
 							{data.serviceName}
 						</ContextAwareToggle>
 						<Accordion.Collapse eventKey={data.id}>
-							<Card.Body>{data.serviceDescription}</Card.Body>
+							<Card.Body>
+								{parse(data.serviceDescription)}
+							</Card.Body>
 						</Accordion.Collapse>
 					</article>
 				))}
