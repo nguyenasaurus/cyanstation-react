@@ -10,7 +10,7 @@ function Projects() {
 	const [currentProjectId, setCurrentProjectId] = useState(null);
 	const [currentProjectName, setCurrentProjectName] = useState(null);
 
-	// Get Services data from db
+	// Get Projects data from db
 	useEffect(() => {
 		const getProjects = async () => {
 			const projectsRef = collection(db, "projects");
@@ -62,7 +62,6 @@ function Projects() {
 					}}
 				/>
 			) : null}
-			;
 		</>
 	);
 }
