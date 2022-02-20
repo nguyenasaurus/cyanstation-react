@@ -23,7 +23,7 @@ Navlink.propTypes = {
 function Navbar() {
 	return (
 		<>
-			<div class="w-full">
+			<div className="w-full">
 				<img src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fheader%20text.png?alt=media&token=96f7be8e-fc2c-4c0c-a352-dcc139775f10" />
 			</div>
 			<nav className="bg-navBg flex items-center px-10 py-4">
