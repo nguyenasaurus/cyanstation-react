@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
 
 import parse from "html-react-parser";
@@ -12,6 +12,7 @@ function Friends() {
 			mainImg: "",
 			subtitle: "",
 			title: "",
+			id: "",
 		},
 	]);
 
@@ -19,37 +20,58 @@ function Friends() {
 
 	// Get Friends data from db
 	useEffect(() => {
-		const getFriendsContent = async () => {
-			const friendsContentRef = collection(db, "friends");
-			const queryFriendsContent = query(friendsContentRef);
-			const friendsContentData = await getDocs(queryFriendsContent);
-			setFriendsContent(
-				friendsContentData.docs.map((doc) => ({
+		const getFriendsLinks = async (id) => {
+			const friendsLinksRef = collection(db, `friends/${id}/links`);
+			const friendsLinksData = await getDocs(
+				friendsLinksRef,
+				orderBy("order", "asc")
+			);
+			setFriendsLinks(
+				friendsLinksData.docs.map((doc) => ({
 					...doc.data(),
 					id: doc.id,
 				}))
 			);
 		};
 
-		// const getFriendsLinks = async () => {
-		// 	const
-		// }
+		const getFriendsContent = async () => {
+			const friendsContentRef = collection(db, "friends");
+			const queryFriendsContent = query(friendsContentRef);
+			const friendsContentData = await getDocs(queryFriendsContent);
+			const friendsData = friendsContentData.docs.map((doc) => ({
+				...doc.data(),
+				id: doc.id,
+			}));
+			setFriendsContent(friendsData);
+			getFriendsLinks(friendsData[0].id);
+		};
+
 		getFriendsContent();
 	}, []);
+
+	const randomNumber = () => Math.floor(Math.random() * 81);
 
 	return (
 		<div className="py-8 sm:px-8">
 			<article
-				className="min-h-screen min-w-full bg-no-repeat bg:cover sm:bg-contain bg-center bg-top"
+				className="relative min-h-screen min-w-full bg-no-repeat bg:cover sm:bg-contain bg-center bg-top"
 				style={{
 					backgroundImage: `url("${friendsContent[0].bgImg}")`,
 				}}>
-				<ul className="flex">
-					<li className="text-link">
-						<a className="border-b-2" href="">
-							Test
-						</a>
-					</li>
+				<ul className="absolute min-w-full min-h-full flex flex-col justify-center px-4">
+					{friendsLinks.map((friend) => (
+						<li
+							className="extra-bold text-link my-4 text-center"
+							key={friend.order}
+							style={{ marginLeft: `${randomNumber()}%` }}>
+							<a
+								className="sm:whitespace-nowrap border-b-2 backdrop-blur bg-whiteSemiTransparent p-2 mr-4 sm:mr-0"
+								href={friend.link}
+								target="_blank">
+								{friend.name}
+							</a>
+						</li>
+					))}
 				</ul>
 			</article>
 			<article className="flex flex-col sm:flex-row mr-4 ml-12 sm:ml-24 sm:mx-24">
