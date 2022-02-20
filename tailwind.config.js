@@ -15,6 +15,7 @@ module.exports = {
 			link: "#1C3CB5",
 			highlight: "#40899C",
 			navBg: "#ECDFE3",
+			whiteSemiTransparent: "rgba(255,255,255,0.5)",
 			// link: {
 			// 	DEFAULT: "#1C3CB5"
 			// }
