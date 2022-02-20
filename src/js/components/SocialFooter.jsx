@@ -11,7 +11,7 @@ function SocialFooter() {
 
 	return (
 		<footer className="absolute bottom-4 left-4">
-			<ul className="flex flex-column">
+			<ul className="flex flex-column pl-0">
 				<li className="mt-2">
 					<Link to="/">
 						<img src={InstagramLogo} />
