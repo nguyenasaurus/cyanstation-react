@@ -46,3 +46,19 @@ nav a, h1, h2, h3, h4, h5, h6, .extra-bold {
 ul {
   padding-left: 1rem;
 }
+
+.border-12 {
+  border-width: 14px;
+}
+
+.border-t-40 {
+  border-top-width: 3rem;
+}
+
+.border-amber-700 {
+  border-color: rgb(180 83 9);
+}
+
+.-top-12 {
+  top: -1.5rem
+}
