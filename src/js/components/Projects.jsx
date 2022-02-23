@@ -14,8 +14,12 @@ function Projects({ userLoggedIn }) {
 	const [currentProjectName, setCurrentProjectName] = useState(null);
 	const [isAddNewProjectModalOpen, setIsAddNewProjectModalOpen] =
 		useState(false);
+	const [currentProjectData, setCurrentProjectData] = useState({});
 
 	// Get Projects data from db
+
+	// TODO update queryProjects to include projectStatus any when logged in as admin
+
 	useEffect(() => {
 		const getProjects = async () => {
 			const projectsRef = collection(db, "projects");
@@ -72,6 +76,7 @@ function Projects({ userLoggedIn }) {
 										<button
 											onClick={() => {
 												setIsEditModalOpen(true);
+												setCurrentProjectData(data);
 											}}
 											className="hover:underline">
 											Edit Project
@@ -98,6 +103,7 @@ function Projects({ userLoggedIn }) {
 
 			{userLoggedIn && isEditModalOpen && (
 				<EditProject
+					currentProjectData={currentProjectData}
 					onClose={() => {
 						setIsEditModalOpen(false);
 					}}
