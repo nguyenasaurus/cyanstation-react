@@ -1,10 +1,12 @@
+import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import ViewProject from "./ViewProject";
 
-function Projects() {
-	// const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+import EditProject from "./Projects/EditProject";
+function Projects({ userLoggedIn }) {
+	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 	const [isViewModalOpen, setIsViewModalOpen] = useState(false);
 	const [projects, setProjects] = useState([]);
 	const [currentProjectId, setCurrentProjectId] = useState(null);
@@ -30,31 +32,52 @@ function Projects() {
 
 	return (
 		<>
-			<div id="projects" className="flex justify-center py-16">
+			<div id="projects" className="relative flex justify-center py-16">
+				{userLoggedIn && (
+					<div className="absolute top-4 right-16 border border-2 border-dark py-1 px-2 hover:bg-black hover:text-white">
+						<button> Add a new Project </button>
+					</div>
+				)}
 				<div className="w-5/6">
 					<main className="flex flex-wrap justify-around">
 						{projects.map((data) => (
 							<figure
-								onClick={() => {
-									setCurrentProjectId(data.id);
-									setCurrentProjectName(data.projectName);
-									setIsViewModalOpen(true);
-								}}
 								key={data.id}
 								className="relative px-4 py-4 cursor-pointer">
-								<div className="bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 pt-6 ease-in-out duration-500">
-									<img src={data.mainThumbnail} alt="" />
-								</div>
-								<div className="absolute top-6 z-0">
-									<p>{data.projectName}</p>
-									<img src={data.hoverThumbnail} alt="" />
-								</div>
+								<button
+									onClick={() => {
+										setCurrentProjectId(data.id);
+										setCurrentProjectName(data.projectName);
+										setIsViewModalOpen(true);
+									}}>
+									<div className="bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 pt-6 ease-in-out duration-500">
+										<img src={data.mainThumbnail} alt="" />
+									</div>
+									<div className="absolute top-6 z-0">
+										<p>{data.projectName}</p>
+										<img src={data.hoverThumbnail} alt="" />
+									</div>
+								</button>
+								{userLoggedIn && (
+									<div className="absolute -bottom-4 w-full flex justify-between">
+										<button
+											onClick={() => {
+												setIsEditModalOpen(true);
+											}}
+											className="hover:underline">
+											Edit Project
+										</button>
+										<button className="hover:underline">
+											Delete Project
+										</button>
+									</div>
+								)}
 							</figure>
 						))}
 					</main>
 				</div>
 			</div>
-			{isViewModalOpen ? (
+			{isViewModalOpen && (
 				<ViewProject
 					projectId={currentProjectId}
 					projectName={currentProjectName}
@@ -62,9 +85,21 @@ function Projects() {
 						setIsViewModalOpen(false);
 					}}
 				/>
-			) : null}
+			)}
+
+			{userLoggedIn && isEditModalOpen && (
+				<EditProject
+					onClose={() => {
+						setIsEditModalOpen(false);
+					}}
+				/>
+			)}
 		</>
 	);
 }
+
+Projects.propTypes = {
+	userLoggedIn: PropTypes.bool,
+};
 
 export default Projects;

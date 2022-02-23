@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { auth } from "../utils/firebase";
+import { auth, logout } from "../utils/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
 import Navbar from "./Navbar";
@@ -25,8 +25,6 @@ export default function App() {
 		});
 	}, []);
 
-	console.log(userLoggedIn);
-
 	return (
 		<div
 			className={classNames(
@@ -36,8 +34,11 @@ export default function App() {
 					: ""
 			)}>
 			{userLoggedIn && (
-				<div className="absolute -top-12 w-full text-white">
-					You're in editing mode!
+				<div className="absolute -top-12 w-full text-white flex justify-between items-center pt-1.5">
+					<div className="">You're in editing mode!</div>
+					<div className="border py-1 px-2">
+						<button onClick={logout}> Sign Out </button>
+					</div>
 				</div>
 			)}
 
@@ -45,11 +46,14 @@ export default function App() {
 				<Navbar />
 				<Routes>
 					<Route exact path="/" element={<Home />} />
-					<Route path="projects" element={<Projects />} />
+					<Route
+						path="projects"
+						element={<Projects userLoggedIn={userLoggedIn} />}
+					/>
 					<Route path="services" element={<Services />} />
 					<Route path="vision" element={<Vision />} />
 					<Route path="friends" element={<Friends />} />
-					<Route path="updatesite" element={<Dashboard />} />
+					<Route path="dashboard" element={<Dashboard />} />
 				</Routes>
 				<SocialFooter />
 			</Router>
