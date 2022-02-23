@@ -49,7 +49,7 @@ function Friends() {
 		getFriendsContent();
 	}, []);
 
-	const randomNumber = () => Math.floor(Math.random() * 81);
+	const randomNumber = () => Math.floor(Math.random() * 75);
 
 	return (
 		<div className="py-8 sm:px-8">
