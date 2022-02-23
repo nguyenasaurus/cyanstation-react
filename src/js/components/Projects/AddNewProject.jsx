@@ -3,19 +3,19 @@ import React from "react";
 
 import ModalWindow from "../UI/ModalWindow";
 
-function EditProject({ onClose }) {
+function AddNewProject({ onClose }) {
 	return (
 		<ModalWindow>
 			<div>
-				Edit project
+				Add a new project
 				<button onClick={onClose}>Close</button>
 			</div>
 		</ModalWindow>
 	);
 }
 
-EditProject.propTypes = {
+AddNewProject.propTypes = {
 	onClose: PropTypes.func,
 };
 
-export default EditProject;
+export default AddNewProject;

@@ -5,12 +5,15 @@ import { db } from "../utils/firebase";
 import ViewProject from "./ViewProject";
 
 import EditProject from "./Projects/EditProject";
+import AddNewProject from "./Projects/AddNewProject";
 function Projects({ userLoggedIn }) {
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 	const [isViewModalOpen, setIsViewModalOpen] = useState(false);
 	const [projects, setProjects] = useState([]);
 	const [currentProjectId, setCurrentProjectId] = useState(null);
 	const [currentProjectName, setCurrentProjectName] = useState(null);
+	const [isAddNewProjectModalOpen, setIsAddNewProjectModalOpen] =
+		useState(false);
 
 	// Get Projects data from db
 	useEffect(() => {
@@ -35,7 +38,13 @@ function Projects({ userLoggedIn }) {
 			<div id="projects" className="relative flex justify-center py-16">
 				{userLoggedIn && (
 					<div className="absolute top-4 right-16 border border-2 border-dark py-1 px-2 hover:bg-black hover:text-white">
-						<button> Add a new Project </button>
+						<button
+							onClick={() => {
+								setIsAddNewProjectModalOpen(true);
+							}}>
+							{" "}
+							Add a new Project{" "}
+						</button>
 					</div>
 				)}
 				<div className="w-5/6">
@@ -91,6 +100,14 @@ function Projects({ userLoggedIn }) {
 				<EditProject
 					onClose={() => {
 						setIsEditModalOpen(false);
+					}}
+				/>
+			)}
+
+			{userLoggedIn && isAddNewProjectModalOpen && (
+				<AddNewProject
+					onClose={() => {
+						setIsAddNewProjectModalOpen(false);
 					}}
 				/>
 			)}
