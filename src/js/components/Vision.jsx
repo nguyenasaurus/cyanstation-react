@@ -24,14 +24,14 @@ function Vision() {
 
 	return (
 		<div>
-			<div className="flex justify-center py-14">
+			<div className="flex justify-center py-6 sm:py-14">
 				{vision.map((data) => (
-					<div className="w-4/6 font-black" key={data.id}>
-						<h1 className="text-highlight text-4xl">
+					<div className="w-5/6 sm:w-4/6 font-black" key={data.id}>
+						<h1 className="text-highlight text-3xl sm:text-4xl">
 							{data.title}
 						</h1>
 						<p className="text-lg leading-6 py-6">{data.copy}</p>
-						<h2 className="text-highlight text-6xl">
+						<h2 className="text-highlight text-3xl sm:text-4xl md:text-6xl">
 							{data.callout}
 						</h2>
 					</div>

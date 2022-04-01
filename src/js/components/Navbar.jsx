@@ -34,8 +34,8 @@ function Navbar() {
 				<img src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fheader%20text.png?alt=media&token=96f7be8e-fc2c-4c0c-a352-dcc139775f10" />
 			</div>
 			<nav className="bg-navBg flex items-center justify-between sm:justify-start px-10 py-4">
-				<Link to="/projects">
-					<img src={logomark} className="z-10" />
+				<Link to="/projects" className="z-50">
+					<img src={logomark} />
 				</Link>
 				<ul className="hidden sm:flex justify-between w-5/6 mx-auto text-2xl font-black">
 					<Navlink link={"projects"} />
@@ -46,7 +46,7 @@ function Navbar() {
 				<PlusIcon
 					className={classNames(
 						mobileNavOpen ? "rotate-45" : "rotate-0",
-						"h-14 w-14 sm:hidden block transition-transform z-10"
+						"h-14 w-14 sm:hidden block transition-transform z-50"
 					)}
 					onClick={() =>
 						mobileNavOpen
@@ -57,7 +57,7 @@ function Navbar() {
 				<aside
 					className={classNames(
 						mobileNavOpen ? "w-full left-0" : "w-0 left-full",
-						"fixed min-h-screen transition-all bg-navBg top-0"
+						"fixed min-h-screen flex align-center transition-all bg-navBg top-0 pt-44 z-20"
 					)}>
 					<ul className="mx-auto text-2xl font-black">
 						<Navlink

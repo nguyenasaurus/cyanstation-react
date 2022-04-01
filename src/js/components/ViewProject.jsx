@@ -26,7 +26,7 @@ function ViewProject({ projectId, projectName, onClose }) {
 	}, []);
 
 	return (
-		<div className="bg-white min-h-full w-full absolute top-0 z-20">
+		<div className="bg-white min-h-full w-full absolute top-0 z-50">
 			<button onClick={() => onClose()}>
 				<img src={logomark} />
 			</button>

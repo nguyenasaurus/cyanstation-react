@@ -65,7 +65,7 @@ function Services() {
 
 	return (
 		<div className="flex justify-center py-16">
-			<Accordion className="w-4/6">
+			<Accordion className="w-5/6 sm:w-4/6">
 				{services.map((data) => (
 					<article className="mb-6" key={data.id}>
 						<ContextAwareToggle eventKey={data.id}>

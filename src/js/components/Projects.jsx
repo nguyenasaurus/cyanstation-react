@@ -63,12 +63,18 @@ function Projects({ userLoggedIn }) {
 										setCurrentProjectName(data.projectName);
 										setIsViewModalOpen(true);
 									}}>
-									<div className="bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 pt-6 ease-in-out duration-500">
+									<div className="bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 sm:pt-6 ease-in-out duration-500">
 										<img src={data.mainThumbnail} alt="" />
 									</div>
-									<div className="absolute top-6 z-0">
-										<p>{data.projectName}</p>
-										<img src={data.hoverThumbnail} alt="" />
+									<div className="sm:absolute sm:top-6 z-0">
+										<p className="pt-2 sm:pt-0 text-xl sm:text-base">
+											{data.projectName}
+										</p>
+										<img
+											src={data.hoverThumbnail}
+											alt=""
+											className="hidden sm:block"
+										/>
 									</div>
 								</button>
 								{userLoggedIn && (
