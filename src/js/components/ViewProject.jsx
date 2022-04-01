@@ -27,9 +27,12 @@ function ViewProject({ projectId, projectName, onClose }) {
 
 	return (
 		<div className="bg-white min-h-full w-full absolute top-0 z-50">
-			<button onClick={() => onClose()}>
-				<img src={logomark} />
-			</button>
+			<div className="flex items-center">
+				<button className="min-w-fit" onClick={() => onClose()}>
+					<img src={logomark} />
+				</button>
+				<h2 className="text-4xl px-2 sm:hidden">{projectName}</h2>
+			</div>
 			<Swiper
 				className="project-slides"
 				modules={[Navigation]}
@@ -43,7 +46,7 @@ function ViewProject({ projectId, projectName, onClose }) {
 						<div className="flex items-center mx-8 relative flex-col sm:flex-row">
 							<img src={data.slideImage} alt="" />
 							<div className="mt-4 my-4 sm:m-0 sm:absolute sm:h-full sm:w-6/12 sm:right-8">
-								<h2 className="text-4xl mb-2 bg-white py-2">
+								<h2 className="text-4xl mb-2 py-2 sm:block hidden">
 									{projectName}
 								</h2>
 								<p className="sm:h-5/6 sm:flex sm:flex-col sm:justify-center">
