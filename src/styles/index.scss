@@ -58,3 +58,9 @@ ul {
 .border-amber-700 {
   border-color: rgb(180 83 9);
 }
+
+@media (min-width: 640px) {
+  .sm\:pt-0 {
+    padding-top: 0px !important;
+  }
+}

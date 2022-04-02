@@ -1,17 +1,16 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import { Outlet } from "react-router";
 import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import ViewProject from "./ViewProject";
 
 import EditProject from "./Projects/EditProject";
 import AddNewProject from "./Projects/AddNewProject";
+import { Link } from "react-router-dom";
 function Projects({ userLoggedIn }) {
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-	const [isViewModalOpen, setIsViewModalOpen] = useState(false);
 	const [projects, setProjects] = useState([]);
-	const [currentProjectId, setCurrentProjectId] = useState(null);
-	const [currentProjectName, setCurrentProjectName] = useState(null);
 	const [isAddNewProjectModalOpen, setIsAddNewProjectModalOpen] =
 		useState(false);
 	const [currentProjectData, setCurrentProjectData] = useState({});
@@ -30,7 +29,10 @@ function Projects({ userLoggedIn }) {
 			);
 			const projectsData = await getDocs(queryProjects);
 			setProjects(
-				projectsData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+				projectsData.docs.map((doc) => ({
+					...doc.data(),
+					id: doc.id,
+				}))
 			);
 		};
 
@@ -57,26 +59,17 @@ function Projects({ userLoggedIn }) {
 							<figure
 								key={data.id}
 								className="relative px-4 py-4 cursor-pointer">
-								<button
-									onClick={() => {
-										setCurrentProjectId(data.id);
-										setCurrentProjectName(data.projectName);
-										setIsViewModalOpen(true);
-									}}>
+								<Link to={data.projectSlug}>
 									<div className="bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 sm:pt-6 ease-in-out duration-500">
 										<img src={data.mainThumbnail} alt="" />
 									</div>
-									<div className="sm:absolute sm:top-6 z-0">
-										<p className="pt-2 sm:pt-0 text-xl sm:text-base">
+									<div className="absolute -top-1 sm:top-0 z-0">
+										<p className="text-xl sm:text-base">
 											{data.projectName}
 										</p>
-										<img
-											src={data.hoverThumbnail}
-											alt=""
-											className="hidden sm:block"
-										/>
+										<img src={data.hoverThumbnail} alt="" />
 									</div>
-								</button>
+								</Link>
 								{userLoggedIn && (
 									<div className="absolute -bottom-4 w-full flex justify-between">
 										<button
@@ -97,15 +90,6 @@ function Projects({ userLoggedIn }) {
 					</main>
 				</div>
 			</div>
-			{isViewModalOpen && (
-				<ViewProject
-					projectId={currentProjectId}
-					projectName={currentProjectName}
-					onClose={() => {
-						setIsViewModalOpen(false);
-					}}
-				/>
-			)}
 
 			{userLoggedIn && isEditModalOpen && (
 				<EditProject
@@ -123,6 +107,7 @@ function Projects({ userLoggedIn }) {
 					}}
 				/>
 			)}
+			<Outlet />
 		</>
 	);
 }

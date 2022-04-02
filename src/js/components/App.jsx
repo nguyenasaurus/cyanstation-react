@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import Navbar from "./Navbar";
 import Projects from "./Projects";
+import ViewProject from "./ViewProject";
 import Services from "./Services";
 import Vision from "./Vision";
 import Friends from "./Friends";
@@ -48,12 +49,13 @@ export default function App() {
 					<Route exact path="/" element={<Home />} />
 					<Route
 						path="projects"
-						element={<Projects userLoggedIn={userLoggedIn} />}
-					/>
+						element={<Projects userLoggedIn={userLoggedIn} />}>
+						<Route path=":projectId" element={<ViewProject />} />
+					</Route>
 					<Route path="services" element={<Services />} />
-					<Route path="vision" element={<Vision />} />
-					<Route path="friends" element={<Friends />} />
-					<Route path="dashboard" element={<Dashboard />} />
+					<Route path="/vision" element={<Vision />} />
+					<Route path="/friends" element={<Friends />} />
+					<Route path="/dashboard" element={<Dashboard />} />
 				</Routes>
 				<SocialFooter />
 			</Router>

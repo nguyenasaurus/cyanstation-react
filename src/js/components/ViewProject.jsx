@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { collection, where, orderBy, getDocs } from "firebase/firestore";
+import { Outlet, useParams } from "react-router-dom";
+import {
+	collection,
+	query,
+	where,
+	orderBy,
+	getDocs,
+	connectFirestoreEmulator,
+} from "firebase/firestore";
 import { db } from "../utils/firebase";
 // Direct React component imports
 import { Navigation, Pagination } from "swiper";
@@ -8,30 +15,54 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import logomark from "../constants/logomark";
 
-function ViewProject({ projectId, projectName, onClose }) {
+function ViewProject() {
+	const { projectId } = useParams();
+
 	const [slides, setSlides] = useState([]);
+
 	useEffect(() => {
 		const getSlides = async () => {
-			const slidesRef = collection(db, "projects", projectId, "slides");
+			const projectsRef = collection(db, "projects");
+			const projectQuery = query(
+				projectsRef,
+				where("projectSlug", "==", projectId)
+			);
+			const projectData = await getDocs(projectQuery);
+			const project = projectData.docs.map((doc) => ({
+				...doc.data(),
+				id: doc.id,
+			}));
+
+			const slidesRef = collection(
+				db,
+				"projects",
+				project[0].id,
+				"slides"
+			);
 			const slidesData = await getDocs(
 				slidesRef,
 				where("slideStatus", "==", "published"),
 				orderBy("slideOrder", "asc")
 			);
 			setSlides(
-				slidesData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+				slidesData.docs.map((doc) => ({
+					...doc.data(),
+					id: doc.id,
+					projectName: project[0].projectName,
+				}))
 			);
 		};
 		getSlides();
 	}, []);
-
 	return (
 		<div className="bg-white min-h-full w-full absolute top-0 z-50">
 			<div className="flex items-center">
 				<button className="min-w-fit" onClick={() => onClose()}>
 					<img src={logomark} />
 				</button>
-				<h2 className="text-4xl px-2 sm:hidden">{projectName}</h2>
+				<h2 className="text-4xl px-2 sm:hidden">
+					{slides[0]?.projectName}
+				</h2>
 			</div>
 			<Swiper
 				className="project-slides"
@@ -41,13 +72,13 @@ function ViewProject({ projectId, projectName, onClose }) {
 				navigation={{
 					disabledClass: "hidden",
 				}}>
-				{slides.map((data) => (
+				{slides?.map((data) => (
 					<SwiperSlide key={data.id}>
 						<div className="flex items-center mx-8 relative flex-col sm:flex-row">
 							<img src={data.slideImage} alt="" />
 							<div className="mt-4 my-4 sm:m-0 sm:absolute sm:h-full sm:w-6/12 sm:right-8">
 								<h2 className="text-4xl mb-2 py-2 sm:block hidden">
-									{projectName}
+									{data.projectName}
 								</h2>
 								<p className="sm:h-5/6 sm:flex sm:flex-col sm:justify-center">
 									<span className="bg-white py-2 px-4 lg:mr-6">
@@ -61,26 +92,13 @@ function ViewProject({ projectId, projectName, onClose }) {
 			</Swiper>
 
 			<div className="flex justify-end mr-4">
-				<button
-					className="border-2 py-2  px-4"
-					onClick={() => onClose()}>
+				<button className="border-2 py-2  px-4">
 					Back to all projects
 				</button>
 			</div>
+			<Outlet />
 		</div>
 	);
 }
 
-ViewProject.propTypes = {
-	projectId: PropTypes.string,
-	projectName: PropTypes.string,
-	onClose: PropTypes.func,
-};
-
 export default ViewProject;
-
-// const sfRef = db.collection('cities').doc('SF');
-// const collections = await sfRef.listCollections();
-// collections.forEach(collection => {
-//   console.log('Found subcollection with id:', collection.id);
-// });
