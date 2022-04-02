@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams, useNavigate } from "react-router-dom";
 import {
 	collection,
 	query,
@@ -16,6 +16,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import logomark from "../constants/logomark";
 
 function ViewProject() {
+	const navigate = useNavigate();
 	const { projectId } = useParams();
 
 	const [slides, setSlides] = useState([]);
@@ -92,7 +93,9 @@ function ViewProject() {
 			</Swiper>
 
 			<div className="flex justify-end mr-4">
-				<button className="border-2 py-2  px-4">
+				<button
+					className="border-2 py-2 px-4"
+					onClick={() => navigate(-1)}>
 					Back to all projects
 				</button>
 			</div>
