@@ -5,12 +5,13 @@ import { PlusIcon } from "@heroicons/react/solid";
 
 import logomark from "../constants/logomark";
 import classNames from "classnames";
-function Navlink({ link, onClick }) {
+function Navlink({ link, onClick, className }) {
 	let resolved = useResolvedPath(link);
 	let match = useMatch({ path: resolved.pathname, end: true });
 
 	return (
-		<li className="px-2 sm:px-4 md:px-6 lg:px-8 hover:text-link">
+		<li
+			className={`px-2 sm:px-4 md:px-6 lg:px-8 hover:text-link ${className}`}>
 			<NavLink
 				className={match ? "text-link" : ""}
 				to={`/${link}`}
@@ -24,6 +25,7 @@ function Navlink({ link, onClick }) {
 Navlink.propTypes = {
 	link: PropTypes.string.isRequired,
 	onClick: PropTypes.func,
+	className: PropTypes.string,
 };
 
 function Navbar() {
@@ -61,18 +63,22 @@ function Navbar() {
 					)}>
 					<ul className="mx-auto text-2xl font-black">
 						<Navlink
+							className="pb-4"
 							link={"projects"}
 							onClick={() => setMobileNavOpen(false)}
 						/>
 						<Navlink
+							className="pb-4"
 							link={"services"}
 							onClick={() => setMobileNavOpen(false)}
 						/>
 						<Navlink
+							className="pb-4"
 							link={"vision"}
 							onClick={() => setMobileNavOpen(false)}
 						/>
 						<Navlink
+							className="pb-4"
 							link={"friends"}
 							onClick={() => setMobileNavOpen(false)}
 						/>
