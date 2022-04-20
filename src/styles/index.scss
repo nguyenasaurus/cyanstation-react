@@ -1,6 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "swiper/swiper-bundle.min.css";
 @import "tailwind.css";
+@import "landingPage.scss";
 
 @font-face {
     font-family: "Futura PT";
@@ -64,3 +65,4 @@ ul {
     padding-top: 0px !important;
   }
 }
+

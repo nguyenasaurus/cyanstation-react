@@ -11,6 +11,7 @@ import Vision from "./Vision";
 import Friends from "./Friends";
 import Dashboard from "./Dashboard";
 import SocialFooter from "./SocialFooter";
+import LandingPage from "./LandingPage";
 import classNames from "classnames";
 
 export default function App() {
@@ -46,7 +47,7 @@ export default function App() {
 			<Router>
 				<Navbar />
 				<Routes>
-					<Route exact path="/" element={<Home />} />
+					<Route exact path="/" element={<LandingPage />} />
 					<Route
 						path="projects"
 						element={<Projects userLoggedIn={userLoggedIn} />}>
@@ -59,14 +60,6 @@ export default function App() {
 				</Routes>
 				<SocialFooter />
 			</Router>
-		</div>
-	);
-}
-
-function Home() {
-	return (
-		<div>
-			<h2>Home</h2>
 		</div>
 	);
 }

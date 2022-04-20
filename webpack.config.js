@@ -85,7 +85,7 @@ module.exports = {
       chunkFilename: "styles.css"
     }),
     new HtmlWebpackPlugin({
-        favicon: '4geeks.ico',
+        favicon: 'favicon.ico',
         template: 'template.html'
     }),
     new PrettierPlugin({
