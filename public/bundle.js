@@ -33567,7 +33567,7 @@ function Projects(_ref) {
   }, projects.map(function (data) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("figure", {
       key: data.id,
-      className: "relative px-4 py-4 cursor-pointer mb-4 sm:mb-0"
+      className: "relative px-4 py-4 cursor-pointer mb-4 sm:mb-0 h-min"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
       to: data.projectSlug
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
@@ -33581,7 +33581,8 @@ function Projects(_ref) {
       className: "text-xl sm:text-base"
     }, data.projectName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("img", {
       src: data.hoverThumbnail,
-      alt: ""
+      alt: "",
+      className: "mt-4"
     }))), userLoggedIn && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
       className: "absolute -bottom-4 w-full flex justify-between"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("button", {
@@ -42197,7 +42198,7 @@ module.exports = function (urlString) {
 
 // extracted by mini-css-extract-plugin
     if(true) {
-      // 1652152721545
+      // 1652153482515
       var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {"esModule":false,"locals":false});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -97077,7 +97078,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("ed9b997b77404757cdd7")
+/******/ 		__webpack_require__.h = () => ("235079bceb5869a07c1e")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
