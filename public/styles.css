@@ -13676,6 +13676,10 @@ ul {
     padding-top: 0px !important;
   }
 }
+.w-full img {
+  width: 100%;
+}
+
 .hover\:text-link:hover {
   --tw-text-opacity:1;
   color: rgb(28 60 181/var(--tw-text-opacity));
