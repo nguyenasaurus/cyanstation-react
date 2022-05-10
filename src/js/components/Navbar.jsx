@@ -35,7 +35,7 @@ function Navbar() {
 			<div className="w-full">
 				<img src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fheader%20text.png?alt=media&token=96f7be8e-fc2c-4c0c-a352-dcc139775f10" />
 			</div>
-			<nav className="bg-navBg flex items-center justify-between sm:justify-start px-10 py-4">
+			<nav className="bg-navBg flex items-center justify-between sm:justify-start px-10 py-4 h-fit">
 				<Link to="/projects" className="z-50">
 					<img src={logomark} />
 				</Link>

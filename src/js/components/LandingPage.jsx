@@ -1,56 +1,28 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import gsap from "gsap";
+import importScript from "../utils/importScript";
+import { ArrowNarrowDownIcon } from "@heroicons/react/solid";
 
-function SocialFooter() {
-	let px1 = document.querySelector(".px-bg-1");
-	let px2 = document.querySelector(".px-bg-2");
-	let halfWidth = window.innerWidth / 2;
-	let halfHeight = window.innerHeight / 2;
-	let _mouseX = 0;
-	let _mouseY = 0;
-	let x_norm = _mouseX / halfWidth - 1;
-	let y_norm = _mouseY / halfHeight - 1;
-	let _depth1 = { x: x_norm * 8, y: y_norm * 8 };
-	let _depth2 = { x: x_norm * 2, y: y_norm * 2 };
+function LandingPage() {
+	importScript(
+		"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"
+	);
+	importScript("https://code.jquery.com/jquery-3.6.0.min.js");
+	importScript(
+		`https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fobjects%2Fobjects.js?alt=media&token=ae3ba8e9-f20f-4c93-88e5-f604818973f1`
+	);
 
-	const mouseMove = (e) => {
-		_mouseX = e.clientX;
-		_mouseY = e.clientY;
-	};
+	useEffect(() => {
+		document.getElementById("app").classList.add("landingPage");
 
-	const onWindowResize = () => {
-		halfWidth = window.innerWidth / 2;
-		halfHeight = window.innerHeight / 2;
-	};
-
-	const loop = () => {
-		if (_mouseX && _mouseY) {
-			gsap.to(px1, {
-				xPercent: _depth1.x,
-				yPercent: _depth1.y,
-				duration: 0.5,
-				ease: "sine.out",
-			});
-			gsap.to(px2, {
-				xPercent: _depth2.x,
-				yPercent: _depth2.y,
-				duration: 0.5,
-				ease: "sine.out",
-			});
-		}
-		requestAnimationFrame(loop);
-	};
-
-	// requestAnimationFrame(loop);
-
-	// window.addEventListener("mousemove", mouseMove);
-	// window.addEventListener("resize", onWindowResize);
+		return () => {
+			document.getElementById("app").classList.remove("landingPage");
+		};
+	}, []);
 
 	return (
 		<div id="container">
 			<div className="parallax">
-				<div className="px-bg-1"></div>
+				<div className="px-bg"></div>
 				<div className="px-bg-2"></div>
 			</div>
 			<div className="floating-objects">
@@ -69,14 +41,12 @@ function SocialFooter() {
 				<div className="object-5">
 					<a href="homepage.html"></a>
 				</div>
-				<div className="object-6">
-					<h2></h2>
-					<a href="homepage.html"></a>
-				</div>
-				<div className="object-7">
-					<h2></h2>
-					<a href="projects.html"></a>
-				</div>
+				<a
+					href="/projects"
+					className="object-6 pointer-events-auto text-black hover:text-black flex flex-col items-center">
+					<ArrowNarrowDownIcon className="w-20 h-20" />
+					<h2 className="text-2xl">enter here</h2>
+				</a>
 			</div>
 
 			<section className="content-container">
@@ -95,4 +65,4 @@ function SocialFooter() {
 	);
 }
 
-export default SocialFooter;
+export default LandingPage;

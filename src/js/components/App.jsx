@@ -49,7 +49,7 @@ export default function App() {
 				<Routes>
 					<Route exact path="/" element={<LandingPage />} />
 					<Route
-						path="projects"
+						path="/projects"
 						element={<Projects userLoggedIn={userLoggedIn} />}>
 						<Route path=":projectId" element={<ViewProject />} />
 					</Route>

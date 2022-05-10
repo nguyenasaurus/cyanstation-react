@@ -31,6 +31,7 @@
   animation-duration: 20s;
   animation-direction: alternate;
   background-size: contain;
+  z-index: 200;
 }
 
 .object-1 {
@@ -187,11 +188,8 @@
 }
 
 .object-6 {
-  width: 18%;
-  height: 18%;
-  background-image: url('https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Farrow-down.png?alt=media&token=aae45e0a-0874-4251-a0fe-ae5c72a6a837');
   animation-name: object6;
-  animation-duration: 20s;
+  animation-duration: 40s;
 }
 
 @keyframes object6 {
@@ -331,7 +329,7 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
-  z-index: 5;
+  z-index: 99;
   pointer-events: none;
 }
 
