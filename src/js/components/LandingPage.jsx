@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import importScript from "../utils/importScript";
 import { ArrowNarrowDownIcon } from "@heroicons/react/solid";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
 	importScript(
@@ -41,12 +42,13 @@ function LandingPage() {
 				<div className="object-5">
 					<a href="homepage.html"></a>
 				</div>
-				<a
-					href="/projects"
+
+				<Link
+					to="/projects"
 					className="object-6 pointer-events-auto text-black hover:text-black flex flex-col items-center">
 					<ArrowNarrowDownIcon className="w-20 h-20" />
 					<h2 className="text-2xl">enter here</h2>
-				</a>
+				</Link>
 			</div>
 
 			<section className="content-container">
