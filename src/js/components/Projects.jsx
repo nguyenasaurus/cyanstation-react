@@ -58,7 +58,7 @@ function Projects({ userLoggedIn }) {
 						{projects.map((data) => (
 							<figure
 								key={data.id}
-								className="relative px-4 py-4 cursor-pointer mb-4 sm:mb-0">
+								className="relative px-4 py-4 cursor-pointer mb-4 sm:mb-0 h-min">
 								<Link to={data.projectSlug}>
 									<div className="bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 pt-6 ease-in-out duration-500">
 										<img src={data.mainThumbnail} alt="" />
@@ -67,7 +67,11 @@ function Projects({ userLoggedIn }) {
 										<p className="text-xl sm:text-base">
 											{data.projectName}
 										</p>
-										<img src={data.hoverThumbnail} alt="" />
+										<img
+											src={data.hoverThumbnail}
+											alt=""
+											className="mt-4"
+										/>
 									</div>
 								</Link>
 								{userLoggedIn && (
