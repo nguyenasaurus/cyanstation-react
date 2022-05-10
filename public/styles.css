@@ -12698,6 +12698,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     max-width: 1536px;
   }
 }
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
 .fixed {
   position: fixed;
 }
@@ -12825,6 +12829,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
+.h-fit {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .h-14 {
   height: 3.5rem;
 }
@@ -12847,6 +12861,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-full {
   width: 100%;
+}
+
+.w-20 {
+  width: 5rem;
 }
 
 .w-5\/6 {
@@ -12896,10 +12914,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-.resize {
-  resize: both;
 }
 
 .flex-col {
@@ -13173,6 +13187,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   -webkit-animation-direction: alternate;
   animation-direction: alternate;
   background-size: contain;
+  z-index: 200;
 }
 
 .object-1 {
@@ -13432,13 +13447,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 .object-6 {
-  width: 18%;
-  height: 18%;
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Farrow-down.png?alt=media&token=aae45e0a-0874-4251-a0fe-ae5c72a6a837");
   -webkit-animation-name: object6;
   animation-name: object6;
-  -webkit-animation-duration: 20s;
-  animation-duration: 20s;
+  -webkit-animation-duration: 40s;
+  animation-duration: 40s;
 }
 
 @-webkit-keyframes object6 {
@@ -13596,7 +13608,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   overflow: hidden;
   width: 100%;
   height: 100%;
-  z-index: 5;
+  z-index: 99;
   pointer-events: none;
 }
 
