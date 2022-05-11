@@ -33389,6 +33389,7 @@ function Navbar() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: "w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("img", {
+    className: "w-full min-w-full",
     src: "https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fheader%20text.png?alt=media&token=96f7be8e-fc2c-4c0c-a352-dcc139775f10"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("nav", {
     className: "bg-navBg flex items-center justify-between sm:justify-start px-10 py-4 h-fit"
@@ -42200,7 +42201,7 @@ module.exports = function (urlString) {
 
 // extracted by mini-css-extract-plugin
     if(true) {
-      // 1652155133681
+      // 1652233948357
       var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {"esModule":false,"locals":false});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -97080,7 +97081,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("6b8dd5afa64993992798")
+/******/ 		__webpack_require__.h = () => ("efb30c1c9c3672a331b7")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
