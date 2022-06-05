@@ -65,10 +65,12 @@ function Friends() {
 							key={friend.order}
 							style={{ marginLeft: `${randomNumber()}%` }}>
 							<a
-								className="sm:whitespace-nowrap border-b-2 backdrop-blur bg-whiteSemiTransparent p-2 mr-4 sm:mr-0"
+								className="sm:whitespace-nowrap backdrop-blur bg-whiteSemiTransparent p-2 mr-4 sm:mr-0"
 								href={friend.link}
 								target="_blank">
-								{friend.name}
+								<span className="underline relative z-10">
+									{friend.name}
+								</span>
 							</a>
 						</li>
 					))}
