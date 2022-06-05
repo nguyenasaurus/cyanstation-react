@@ -33220,10 +33220,12 @@ function Friends() {
         marginLeft: "".concat(randomNumber(), "%")
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("a", {
-      className: "sm:whitespace-nowrap border-b-2 backdrop-blur bg-whiteSemiTransparent p-2 mr-4 sm:mr-0",
+      className: "sm:whitespace-nowrap backdrop-blur bg-whiteSemiTransparent p-2 mr-4 sm:mr-0",
       href: friend.link,
       target: "_blank"
-    }, friend.name));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("span", {
+      className: "underline relative z-10"
+    }, friend.name)));
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("article", {
     className: "flex flex-col sm:flex-row mr-4 ml-12 sm:ml-24 sm:mx-24"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("figure", {
@@ -33279,7 +33281,7 @@ function LandingPage() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "parallax"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "px-bg"
+    className: "px-bg-1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "px-bg-2"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -33319,7 +33321,7 @@ function LandingPage() {
     className: "logo",
     src: "https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Flogo%2Flogo.svg?alt=media&token=af1b4dea-f84a-4236-8b80-fc94f7868b25"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-    className: "text"
+    className: "text-black"
   }, "architecture & transformative design // car@cyanstation.com"))));
 }
 
@@ -33387,11 +33389,13 @@ function Navbar() {
       setMobileNavOpen = _useState2[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-    className: "w-full"
+    className: "w-full relative"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("img", {
     className: "w-full min-w-full",
-    src: "https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fheader%20text.png?alt=media&token=96f7be8e-fc2c-4c0c-a352-dcc139775f10"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("nav", {
+    src: "https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fbanner-v2.jpeg?alt=media&token=0994f4b8-f0d8-4581-a229-27f54a865e89"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h1", {
+    className: "absolute top-1 sm:top-3 right-8"
+  }, "architecture & transformative design")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("nav", {
     className: "bg-navBg flex items-center justify-between sm:justify-start px-10 py-4 h-fit"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
     to: "/projects",
@@ -33570,11 +33574,11 @@ function Projects(_ref) {
   }, projects.map(function (data) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("figure", {
       key: data.id,
-      className: "relative px-4 py-4 cursor-pointer mb-4 sm:mb-0 h-min"
+      className: "relative p-4 cursor-pointer mb-4 sm:mb-0 h-min"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
       to: data.projectSlug
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
-      className: "bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 pt-6 ease-in-out duration-500"
+      className: "bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 pt-2 ease-in-out duration-500 h-min"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("img", {
       src: data.mainThumbnail,
       alt: ""
@@ -33585,7 +33589,7 @@ function Projects(_ref) {
     }, data.projectName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("img", {
       src: data.hoverThumbnail,
       alt: "",
-      className: "mt-4"
+      className: "mt-2"
     }))), userLoggedIn && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
       className: "absolute -bottom-4 w-full flex justify-between"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("button", {
@@ -33855,7 +33859,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function SocialFooter() {
-  var FacebookLogo = "https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fsocial-facebook.png?alt=media&token=1ef5fc72-6841-4fe0-9035-57094854fdcd";
+  // const FacebookLogo =
+  "https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fsocial-facebook.png?alt=media&token=1ef5fc72-6841-4fe0-9035-57094854fdcd";
+
   var LinkedInLogo = "https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fsocial-linkedin.png?alt=media&token=9b10243a-ccac-4af4-a1ce-727835904c82";
   var InstagramLogo = "https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fsocial-instagram.png?alt=media&token=055c9c6b-9086-4169-bb5c-b54114aa2ae1";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
@@ -33865,19 +33871,15 @@ function SocialFooter() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: "mt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: "/"
+    to: "https://www.instagram.com/cyan_station/",
+    target: "_blank"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: InstagramLogo
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: "mt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: "/"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: FacebookLogo
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    className: "mt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: "/"
+    to: "https://www.linkedin.com/in/car-martin-a5492a53/",
+    target: "_blank"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: LinkedInLogo
   })))));
@@ -34047,18 +34049,19 @@ function ViewProject() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement(swiper_react__WEBPACK_IMPORTED_MODULE_8__.SwiperSlide, {
       key: data.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("div", {
-      className: "flex items-center mx-8 relative flex-col sm:flex-row"
+      className: "flex items-top justify-center mx-8 relative flex-col sm:flex-row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("img", {
+      className: "w-full sm:w-2/6",
       src: data.slideImage,
       alt: ""
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("div", {
-      className: "mt-4 my-4 sm:m-0 sm:absolute sm:h-full sm:w-6/12 sm:right-8"
+      className: "mx-4 sm:m-0 sm:h-full sm:w-6/12"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("h2", {
-      className: "text-4xl mb-2 py-2 sm:block hidden"
+      className: "text-4xl mb-2 py-2 px-4 sm:block hidden"
     }, data.projectName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("p", {
-      className: "sm:h-5/6 sm:flex sm:flex-col sm:justify-center"
+      className: "sm:h-5/6 sm:flex sm:flex-col sm:justify-center mt-4 sm:mt-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("span", {
-      className: "bg-white py-2 px-4 lg:mr-6"
+      className: "bg-white sm:py-2 sm:px-4 lg:mr-6"
     }, data.slideCopy)))));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("div", {
     className: "flex justify-end mr-4"
@@ -42201,7 +42204,7 @@ module.exports = function (urlString) {
 
 // extracted by mini-css-extract-plugin
     if(true) {
-      // 1652233948357
+      // 1654463898774
       var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {"esModule":false,"locals":false});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -97081,7 +97084,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("efb30c1c9c3672a331b7")
+/******/ 		__webpack_require__.h = () => ("a22adc356eac6508ca61")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

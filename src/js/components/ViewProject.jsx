@@ -77,7 +77,7 @@ function ViewProject() {
 					<SwiperSlide key={data.id}>
 						<div className="flex items-top justify-center mx-8 relative flex-col sm:flex-row">
 							<img
-								className="w-2/6"
+								className="w-full sm:w-2/6"
 								src={data.slideImage}
 								alt=""
 							/>
@@ -85,8 +85,8 @@ function ViewProject() {
 								<h2 className="text-4xl mb-2 py-2 px-4 sm:block hidden">
 									{data.projectName}
 								</h2>
-								<p className="sm:h-5/6 sm:flex sm:flex-col sm:justify-center">
-									<span className="bg-white py-2 px-4 lg:mr-6">
+								<p className="sm:h-5/6 sm:flex sm:flex-col sm:justify-center mt-4 sm:mt-0">
+									<span className="bg-white sm:py-2 sm:px-4 lg:mr-6">
 										{data.slideCopy}
 									</span>
 								</p>
