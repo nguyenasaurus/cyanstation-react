@@ -23,7 +23,7 @@ function LandingPage() {
 	return (
 		<div id="container">
 			<div className="parallax">
-				<div className="px-bg"></div>
+				<div className="px-bg-1"></div>
 				<div className="px-bg-2"></div>
 			</div>
 			<div className="floating-objects">
@@ -57,7 +57,7 @@ function LandingPage() {
 						className="logo"
 						src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Flogo%2Flogo.svg?alt=media&token=af1b4dea-f84a-4236-8b80-fc94f7868b25"
 					/>
-					<h2 className="text">
+					<h2 className="text-black">
 						architecture & transformative design //
 						car@cyanstation.com
 					</h2>
