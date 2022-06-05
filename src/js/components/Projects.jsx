@@ -60,7 +60,7 @@ function Projects({ userLoggedIn }) {
 								key={data.id}
 								className="relative p-4 cursor-pointer mb-4 sm:mb-0 h-min">
 								<Link to={data.projectSlug}>
-									<div className="bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 pt-6 ease-in-out duration-500 h-min">
+									<div className="bg-white z-10 relative transition-opacity opacity-1 hover:opacity-0 pt-2 ease-in-out duration-500 h-min">
 										<img src={data.mainThumbnail} alt="" />
 									</div>
 									<div className="absolute -top-1 sm:top-0 z-0">
@@ -70,7 +70,7 @@ function Projects({ userLoggedIn }) {
 										<img
 											src={data.hoverThumbnail}
 											alt=""
-											className="mt-4"
+											className="mt-2"
 										/>
 									</div>
 								</Link>
