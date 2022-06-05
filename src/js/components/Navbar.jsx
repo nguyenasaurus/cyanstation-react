@@ -32,11 +32,14 @@ function Navbar() {
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
 	return (
 		<>
-			<div className="w-full">
+			<div className="w-full relative">
 				<img
 					className="w-full min-w-full"
-					src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fheader%20text.png?alt=media&token=96f7be8e-fc2c-4c0c-a352-dcc139775f10"
+					src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fbanner-v2.jpeg?alt=media&token=0994f4b8-f0d8-4581-a229-27f54a865e89"
 				/>
+				<h1 className="absolute top-1 sm:top-3 right-8">
+					architecture & transformative design
+				</h1>
 			</div>
 			<nav className="bg-navBg flex items-center justify-between sm:justify-start px-10 py-4 h-fit">
 				<Link to="/projects" className="z-50">
