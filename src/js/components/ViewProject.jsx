@@ -75,10 +75,14 @@ function ViewProject() {
 				}}>
 				{slides?.map((data) => (
 					<SwiperSlide key={data.id}>
-						<div className="flex items-center mx-8 relative flex-col sm:flex-row">
-							<img src={data.slideImage} alt="" />
-							<div className="mt-4 my-4 sm:m-0 sm:absolute sm:h-full sm:w-6/12 sm:right-8">
-								<h2 className="text-4xl mb-2 py-2 sm:block hidden">
+						<div className="flex items-top justify-center mx-8 relative flex-col sm:flex-row">
+							<img
+								className="w-2/6"
+								src={data.slideImage}
+								alt=""
+							/>
+							<div className="mx-4 sm:m-0 sm:h-full sm:w-6/12">
+								<h2 className="text-4xl mb-2 py-2 px-4 sm:block hidden">
 									{data.projectName}
 								</h2>
 								<p className="sm:h-5/6 sm:flex sm:flex-col sm:justify-center">
