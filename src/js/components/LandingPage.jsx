@@ -22,6 +22,8 @@ function LandingPage() {
 
 	return (
 		<div id="container">
+			<div className="black-screen-1" />
+			<div className="black-screen-2" />
 			<div className="parallax">
 				<div className="px-bg-1"></div>
 				<div className="px-bg-2"></div>
