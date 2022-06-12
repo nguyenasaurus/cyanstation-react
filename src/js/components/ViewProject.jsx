@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, useParams, useNavigate } from "react-router-dom";
+import { Outlet, useParams, useNavigate, Link } from "react-router-dom";
 import {
 	collection,
 	query,
@@ -59,7 +59,9 @@ function ViewProject() {
 		<div className="bg-white min-h-full w-full absolute top-0 z-50">
 			<div className="flex items-center">
 				<button className="min-w-fit" onClick={() => onClose()}>
-					<img src={logomark} />
+					<Link to="/projects" className="z-50">
+						<img src={logomark} />
+					</Link>
 				</button>
 				<h2 className="text-4xl px-2 sm:hidden">
 					{slides[0]?.projectName}
