@@ -34,10 +34,15 @@ function Navbar() {
 		<>
 			<div className="w-full relative">
 				<img
-					className="w-full min-w-full"
-					src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Fbanner-v2.jpeg?alt=media&token=0994f4b8-f0d8-4581-a229-27f54a865e89"
+					className="w-full h-8 object-cover"
+					src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/Cyan%20Station%20Background%20Image%20(1).PNG?alt=media&token=e7994f80-cff9-4e86-9691-e95cb6fb8bae"
 				/>
-				<h1 className="absolute top-1 sm:top-3 right-8">
+				<img
+					className="h-6 absolute left-8 top-1 hidden sm:block"
+					src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/cyan%20station%20logo%20(1).svg?alt=media&token=1dfb4df9-0d5c-47ea-9b65-4214dfc5debd"
+					alt=""
+				/>
+				<h1 className="absolute top-1.5 right-2 sm:right-8">
 					architecture & transformative design
 				</h1>
 			</div>
