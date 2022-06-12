@@ -3,7 +3,6 @@ import { useMatch, useResolvedPath, NavLink, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { PlusIcon } from "@heroicons/react/solid";
 
-import logomark from "../constants/logomark";
 import classNames from "classnames";
 function Navlink({ link, onClick, className }) {
 	let resolved = useResolvedPath(link);
@@ -48,7 +47,10 @@ function Navbar() {
 			</div>
 			<nav className="bg-navBg flex items-center justify-between sm:justify-start px-10 py-4 h-fit">
 				<Link to="/projects" className="z-50">
-					<img src={logomark} />
+					<img
+						className="w-16 h-16"
+						src="https://firebasestorage.googleapis.com/v0/b/cyanstationv1.appspot.com/o/assets%2Flogomark.svg?alt=media&token=04f4cc24-4f12-4711-bc07-3367495cf176"
+					/>
 				</Link>
 				<ul className="hidden sm:flex justify-between w-5/6 mx-auto text-2xl font-black">
 					<Navlink link={"projects"} />
