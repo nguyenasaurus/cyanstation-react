@@ -54,7 +54,7 @@ function Projects({ userLoggedIn }) {
 					</div>
 				)}
 				<div className="w-5/6">
-					<main className="flex flex-wrap justify-around">
+					<main className="flex flex-wrap justify-center">
 						{projects.map((data) => (
 							<figure
 								key={data.id}
