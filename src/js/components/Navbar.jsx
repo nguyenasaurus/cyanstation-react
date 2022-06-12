@@ -72,7 +72,7 @@ function Navbar() {
 						mobileNavOpen ? "w-full left-0" : "w-0 left-full",
 						"fixed min-h-screen flex sm:hidden align-center transition-all bg-navBg top-0 pt-44 z-20"
 					)}>
-					<ul className="mx-auto text-2xl font-black">
+					<ul className="mx-auto text-2xl font-black text-center">
 						<Navlink
 							className="pb-4"
 							link={"projects"}
